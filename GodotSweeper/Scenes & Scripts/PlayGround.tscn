@@ -7,7 +7,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "Ez a Scene tartalmazza az egész játékteret"
 }
 
 [node name="BackButton" type="Button" parent="."]
@@ -16,4 +17,14 @@ margin_top = 16.0
 margin_right = 1010.0
 margin_bottom = 36.0
 text = "Vissza"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "Visszagomb a főmenübe"
+}
+
+[node name="PlayableTiles" type="TileMap" parent="."]
+format = 1
+__meta__ = {
+"_editor_description_": "Tilemap a játék térképéhez"
+}
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

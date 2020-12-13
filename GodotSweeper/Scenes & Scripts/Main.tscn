@@ -5,7 +5,8 @@
 [node name="Main" type="Control"]
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "A fő Scene, ami futtatásra kerül, és tartalmazza a főmenüt"
 }
 
 [node name="StartButton" type="Button" parent="."]
