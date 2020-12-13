@@ -16,9 +16,5 @@ func _ready():
 #	pass
 
 
-func _on_StartButton_pressed():
-	get_tree().change_scene("res://Scenes/PlayGround.tscn")
-
-
-func _on_ExitButton_pressed():
-	get_tree().quit()
+func _on_BackButton_pressed():
+	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
