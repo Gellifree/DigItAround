@@ -1,8 +1,19 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/PlayGroundScene.gd" type="Script" id=1]
 
 [node name="PlayGround" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+margin_left = 897.0
+margin_top = 16.0
+margin_right = 1010.0
+margin_bottom = 36.0
+text = "Vissza"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -1,6 +1,31 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/MainScene.gd" type="Script" id=1]
 
 [node name="Main" type="Control"]
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 437.0
+margin_top = 214.0
+margin_right = 584.0
+margin_bottom = 234.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="."]
+margin_left = 437.0
+margin_top = 247.0
+margin_right = 583.0
+margin_bottom = 267.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
