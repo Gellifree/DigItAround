@@ -1,8 +1,13 @@
 extends Control
 
 var rngen = RandomNumberGenerator.new()
+var alive = true
 
-func generateMap(map, size):
+var map = []
+var bombCount = []
+var firstClick = 0
+
+func generateMap(size):
 	#Generáljunk le egy pályát
 	
 	#Töltsük fel nullákkal
@@ -16,7 +21,7 @@ func generateMap(map, size):
 	for i in range(size):
 		for j in range(size):
 			var rnd = rngen.randf_range(0, 100)
-			if(rnd > 70):
+			if(rnd > 80):
 				map[i][j] = 1
 		print(map[i])
 
@@ -24,10 +29,10 @@ func generateMap(map, size):
 func setTileMap(size):
 	for i in range(size):
 		for j in range(size):
-			$PlayableTiles.set_cell(i,j,11)
+			$PlayableTiles.set_cell(i,j,9)
 
 
-func validBorders(map, point):
+func validBorders(point):
 	#Nézzük meg egy elemnek mik a valóságos őt körülvevő blokkok egy mátrixban
 	#Például egy sarok elemnek csak 3 valódi körülötte lévő blokkja van.
 	var result = []
@@ -72,7 +77,7 @@ func generateBombCount(map, bombCount):
 	for i in range(map.size()):
 		var sumList = []
 		for j in range(map.size()):
-			sumList = validBorders(map, [i ,j])
+			sumList = validBorders([i ,j])
 			#print("Szumlist: ",sumList)
 			#Ezek azok a koordináták, ahol az otlévő adatokat összekell adni
 			var summableList = []
@@ -81,16 +86,28 @@ func generateBombCount(map, bombCount):
 			bombCount[i][j] = sumData(summableList)
 		print(bombCount[i])
 
+
+func Reveal():
+	for i in range(map.size()):
+		for j in range(map.size()):
+			if(map[i][j] == 1):
+				$PlayableTiles.set_cell(j,i,11)
+				pass
+			else:
+				$PlayableTiles.set_cell(j,i,bombCount[i][j])
+				#if(bombCount[i][j] == 0):
+				#	$PlayableTiles.set_cell(j, i, 9)
+				pass
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Töltsük ki a játékteret
-	setTileMap(3)
+	setTileMap(5)
 	#Hozzuk létre a pályát, ami tárolja hogy hol vannak a bombák
-	var map = []
-	var bombCount = []
-	generateMap(map, 3)
+	
+	generateMap(5)
 	generateBombCount(map, bombCount)
-
+	Reveal()
 	pass
 
 
