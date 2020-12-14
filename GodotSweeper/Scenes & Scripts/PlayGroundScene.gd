@@ -9,6 +9,31 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
+var matrixSize = 5
+
+#Győzelmi kondíció
+#A markerben bennevan hogy hány darab mezőt fedtünk fel, ha összegezzük a bennelévő eggyeseket
+#A map-ben bennevan, hogy hány darab bombánk van
+#Hogy ha a markerben felfedtünk annyi blokkot, amihez hozzáadva a bombák számát, megkapjuk az összes elemet, akkor minden blokk felvan fedve, 
+#ami nem bomba
+
+func sumMatrix(matrix):
+	var result = 0
+	for i in range(len(matrix)):
+		for j in range(len(matrix)):
+			result += matrix[i][j]
+	return result
+
+func didWeWin():
+	var marked = 0
+	var bombs = 0
+	marked = sumMatrix(marker)
+	bombs = sumMatrix(map)
+	print("marked sum:", marked)
+	print("bombs sum:", bombs)
+	if(marked + bombs == matrixSize * matrixSize):
+		$WinDialog.popup()
+
 
 func generateMap(size):
 	#Generáljunk le egy pályát
@@ -24,7 +49,7 @@ func generateMap(size):
 	for i in range(size):
 		for j in range(size):
 			var rnd = rngen.randf_range(0, 100)
-			if(rnd > 75):
+			if(rnd > 80):
 				map[i][j] = 1
 		print(map[i])
 
@@ -121,9 +146,10 @@ func guessTile(point):
 		$LoseDialog.popup()
 		Reveal()
 	else:
+		didWeWin()
 		if(bombCount[point[0]][point[1]] != 0):
 			revealSingleTile(point)
-			marker[point[0]][point[1]] == 1
+			marker[point[0]][point[1]] = 1
 		else:
 			revealZeroes(point)
 	pass
@@ -153,10 +179,10 @@ func revealZeroes(point):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Töltsük ki a játékteret
-	setTileMap(7)
+	setTileMap(matrixSize)
 	#Hozzuk létre a pályát, ami tárolja hogy hol vannak a bombák
 	
-	generateMap(7)
+	generateMap(matrixSize)
 	generateBombCount()
 	generateMarker()
 	#Reveal()
@@ -214,4 +240,8 @@ func _on_BackButton_pressed():
 
 
 func _on_LoseDialog_confirmed():
+	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
+
+
+func _on_WinDialog_confirmed():
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
