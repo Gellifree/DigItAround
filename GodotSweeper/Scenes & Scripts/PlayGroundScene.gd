@@ -190,8 +190,16 @@ func _input(event):
 						map[border[0]][border[1]] = 0
 					firstClick += 1
 					generateBombCount()
-					
-				guessTile([tile_index[0], tile_index[1]])
+				if($PlayableTiles.get_cell(tile_index[0],tile_index[1]) != 10):
+					guessTile([tile_index[0],tile_index[1]])
+					firstClick += 1
+		if(buttonState == 2):
+			if(Input.is_action_pressed("Flaging")):
+				if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
+					if($PlayableTiles.get_cell(tile_index[0],tile_index[1]) == 9):
+						$PlayableTiles.set_cell(tile_index[0],tile_index[1],10)
+					elif($PlayableTiles.get_cell(tile_index[0],tile_index[1]) == 10):
+						$PlayableTiles.set_cell(tile_index[0],tile_index[1],9)
 					
 		
 
