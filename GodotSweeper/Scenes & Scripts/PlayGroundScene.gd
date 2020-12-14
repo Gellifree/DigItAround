@@ -24,7 +24,7 @@ func generateMap(size):
 	for i in range(size):
 		for j in range(size):
 			var rnd = rngen.randf_range(0, 100)
-			if(rnd > 90):
+			if(rnd > 60):
 				map[i][j] = 1
 		print(map[i])
 
@@ -152,10 +152,10 @@ func revealZeroes(point):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Töltsük ki a játékteret
-	setTileMap(4)
+	setTileMap(7)
 	#Hozzuk létre a pályát, ami tárolja hogy hol vannak a bombák
 	
-	generateMap(4)
+	generateMap(7)
 	generateBombCount()
 	generateMarker()
 	#Reveal()
@@ -180,13 +180,14 @@ func _input(event):
 		if(buttonState == 1 and alive == true):
 			print("Mouse click at: ", tile_index) 
 			if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
-				print("Firstclick értéke: ",firstClick)
+				#print("Firstclick értéke: ",firstClick)
 				if(firstClick == 0):
 					map[tile_index[0]][tile_index[1]] = 0
-					print("map:",map[tile_index[0]][tile_index[1]])
+					#print("map:",map[tile_index[0]][tile_index[1]])
 					var validBorder = validBorders(tile_index)
-					for i in range(len(validBorder)):
-						map[validBorder[i][0]][validBorder[i][1]] == 0
+					print("list of validborders:",validBorder)
+					for border in validBorder:
+						map[border[0]][border[1]] = 0
 					firstClick += 1
 					generateBombCount()
 					
