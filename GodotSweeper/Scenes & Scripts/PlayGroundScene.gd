@@ -24,7 +24,7 @@ func generateMap(size):
 	for i in range(size):
 		for j in range(size):
 			var rnd = rngen.randf_range(0, 100)
-			if(rnd > 60):
+			if(rnd > 75):
 				map[i][j] = 1
 		print(map[i])
 
@@ -118,6 +118,7 @@ func guessTile(point):
 	if(map[point[0]][point[1]] == 1):
 		alive = false
 		print("You lose - Game over")
+		$LoseDialog.popup()
 		Reveal()
 	else:
 		if(bombCount[point[0]][point[1]] != 0):
@@ -175,17 +176,17 @@ func _input(event):
 		tile_index[1] = int(tile_index[1] / 2)
 		
 		var buttonState = event.get_button_index()
-		print("buttonstate:",buttonState)
+		#print("buttonstate:",buttonState)
 		
 		if(buttonState == 1 and alive == true):
-			print("Mouse click at: ", tile_index) 
+			#print("Mouse click at: ", tile_index) 
 			if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
 				#print("Firstclick értéke: ",firstClick)
 				if(firstClick == 0):
 					map[tile_index[0]][tile_index[1]] = 0
 					#print("map:",map[tile_index[0]][tile_index[1]])
 					var validBorder = validBorders(tile_index)
-					print("list of validborders:",validBorder)
+					#print("list of validborders:",validBorder)
 					for border in validBorder:
 						map[border[0]][border[1]] = 0
 					firstClick += 1
@@ -209,4 +210,8 @@ func _input(event):
 
 
 func _on_BackButton_pressed():
+	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
+
+
+func _on_LoseDialog_confirmed():
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")

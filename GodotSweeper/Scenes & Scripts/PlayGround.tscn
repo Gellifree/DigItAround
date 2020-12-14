@@ -201,4 +201,40 @@ format = 1
 __meta__ = {
 "_editor_description_": "Tilemap a játék térképéhez"
 }
+
+[node name="LoseDialog" type="AcceptDialog" parent="."]
+visible = true
+margin_left = 421.0
+margin_top = 220.0
+margin_right = 594.0
+margin_bottom = 288.0
+rect_clip_content = true
+size_flags_horizontal = 0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+popup_exclusive = true
+window_title = "Játék vége"
+dialog_hide_on_ok = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LoseDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 165.0
+margin_bottom = 32.0
+text = "Vesztettél :("
+
+[node name="WinDialog" type="AcceptDialog" parent="."]
+margin_left = 418.0
+margin_top = 310.0
+margin_right = 594.0
+margin_bottom = 379.0
+window_title = "Játék vége"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WinDialog"]
+margin_left = 53.0
+margin_top = 10.0
+margin_right = 123.0
+margin_bottom = 35.0
+text = "Nyertél! :)"
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="confirmed" from="LoseDialog" to="." method="_on_LoseDialog_confirmed"]
