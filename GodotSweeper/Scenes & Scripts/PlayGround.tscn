@@ -194,7 +194,7 @@ __meta__ = {
 }
 
 [node name="PlayableTiles" type="TileMap" parent="."]
-scale = Vector2( 2, 2 )
+position = Vector2( 100, 70 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -235,10 +235,10 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WinDialog"]
-margin_left = 53.0
-margin_top = 10.0
-margin_right = 123.0
-margin_bottom = 35.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 168.0
+margin_bottom = 33.0
 text = "Nyertél! :)"
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="confirmed" from="LoseDialog" to="." method="_on_LoseDialog_confirmed"]

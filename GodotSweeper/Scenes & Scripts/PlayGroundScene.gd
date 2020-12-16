@@ -9,7 +9,9 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 5
+var matrixSize = 8
+
+var Scale = 1
 
 #Győzelmi kondíció
 #A markerben bennevan hogy hány darab mezőt fedtünk fel, ha összegezzük a bennelévő eggyeseket
@@ -29,8 +31,8 @@ func didWeWin():
 	var bombs = 0
 	marked = sumMatrix(marker)
 	bombs = sumMatrix(map)
-	print("marked sum:", marked)
-	print("bombs sum:", bombs)
+	#print("marked sum:", marked)
+	#print("bombs sum:", bombs)
 	if(marked + bombs == matrixSize * matrixSize):
 		$WinDialog.popup()
 
@@ -39,7 +41,7 @@ func generateMap(size):
 	#Generáljunk le egy pályát
 	
 	#Töltsük fel nullákkal
-	print("Térkép elkészítése\n")
+	#print("Térkép elkészítése\n")
 	for i in range(size):
 		map.append([])
 		for j in range(size):
@@ -51,10 +53,18 @@ func generateMap(size):
 			var rnd = rngen.randf_range(0, 100)
 			if(rnd > 80):
 				map[i][j] = 1
-		print(map[i])
+		#print(map[i])
 
 
 func setTileMap(size):
+	Scale =  (480 / matrixSize) / float(32)
+	Scale = round(Scale)
+	print("osztás eredménye: ",(480 / matrixSize))
+	print(Scale)
+	$PlayableTiles.scale.x = Scale
+	$PlayableTiles.scale.y = Scale
+	
+	
 	for i in range(size):
 		for j in range(size):
 			$PlayableTiles.set_cell(i,j,9)
@@ -96,7 +106,7 @@ func sumData(list):
 	return sum
 
 func generateBombCount():
-	print("Bomba megszámlásáért felelős tömb készítése\n")
+	#print("Bomba megszámlásáért felelős tömb készítése\n")
 	bombCount = []
 	for i in range(map.size()):
 		bombCount.append([])
@@ -113,7 +123,7 @@ func generateBombCount():
 			for s in range(len(sumList)):
 				summableList.append(map[sumList[s][0]][sumList[s][1]])
 			bombCount[i][j] = sumData(summableList)
-		print(bombCount[i])
+		#print(bombCount[i])
 
 func generateMarker():
 	for i in range(map.size()):
@@ -194,18 +204,22 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		var eventPos = event.position
-		#eventPos.x -= 30
-		#eventPos.y -= 30
+		eventPos.x -= 100
+		eventPos.y -= 70
 		
 		var tile_index = $PlayableTiles.world_to_map(eventPos)
-		tile_index[0] = int(tile_index[0] / 2)  #Osztani kell a skálázással
-		tile_index[1] = int(tile_index[1] / 2)
+		tile_index[0] = int(tile_index[0] / Scale) #Osztani kell a skálázással
+		tile_index[1] = int(tile_index[1] / Scale)
+		
+		print("osztásX:", tile_index[0] / Scale)
+		print("osztásY:", tile_index[1] / Scale)
+		print("A tileindex...:", tile_index)
 		
 		var buttonState = event.get_button_index()
 		#print("buttonstate:",buttonState)
 		
 		if(buttonState == 1 and alive == true):
-			#print("Mouse click at: ", tile_index) 
+			print("Mouse click at: ", tile_index) 
 			if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
 				#print("Firstclick értéke: ",firstClick)
 				if(firstClick == 0):
