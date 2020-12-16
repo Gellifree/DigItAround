@@ -9,7 +9,7 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 8
+var matrixSize = 25
 
 var Scale = 1
 
@@ -57,10 +57,10 @@ func generateMap(size):
 
 
 func setTileMap(size):
-	Scale =  (480 / matrixSize) / float(32)
-	Scale = round(Scale)
-	print("osztás eredménye: ",(480 / matrixSize))
-	print(Scale)
+	Scale =  (550 / matrixSize) / float(32)
+	Scale = Scale
+	#print("osztás eredménye: ",(480 / matrixSize))
+	#print(Scale)
 	$PlayableTiles.scale.x = Scale
 	$PlayableTiles.scale.y = Scale
 	
@@ -204,15 +204,18 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		var eventPos = event.position
-		eventPos.x -= 100
-		eventPos.y -= 70
+		print("Egér koordinátáai:",eventPos)
+		eventPos.x -= 50
+		eventPos.y -= 50
+		print("Eltolt egér koord:", eventPos)
 		
-		var tile_index = $PlayableTiles.world_to_map(eventPos)
-		tile_index[0] = int(tile_index[0] / Scale) #Osztani kell a skálázással
-		tile_index[1] = int(tile_index[1] / Scale)
+		var tile_index = $PlayableTiles.world_to_map(eventPos / Scale)
+		print("worldtomap:", tile_index)
+		tile_index[0] = int(tile_index[0]) #Osztani kell a skálázással
+		tile_index[1] = int(tile_index[1])
 		
-		print("osztásX:", tile_index[0] / Scale)
-		print("osztásY:", tile_index[1] / Scale)
+		#print("osztásX:", tile_index[0] / Scale)
+		#print("osztásY:", tile_index[1] / Scale)
 		print("A tileindex...:", tile_index)
 		
 		var buttonState = event.get_button_index()

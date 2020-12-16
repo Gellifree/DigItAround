@@ -194,7 +194,7 @@ __meta__ = {
 }
 
 [node name="PlayableTiles" type="TileMap" parent="."]
-position = Vector2( 100, 70 )
+position = Vector2( 50, 50 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
