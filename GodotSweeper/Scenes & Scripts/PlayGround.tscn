@@ -183,9 +183,9 @@ __meta__ = {
 }
 
 [node name="BackButton" type="Button" parent="."]
-margin_left = 897.0
+margin_left = 673.994
 margin_top = 16.0
-margin_right = 1010.0
+margin_right = 786.994
 margin_bottom = 36.0
 text = "Vissza"
 __meta__ = {
@@ -194,7 +194,7 @@ __meta__ = {
 }
 
 [node name="PlayableTiles" type="TileMap" parent="."]
-position = Vector2( 50, 50 )
+position = Vector2( 80, 80 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -240,6 +240,45 @@ margin_top = 8.0
 margin_right = 168.0
 margin_bottom = 33.0
 text = "Nyertél! :)"
+
+[node name="Starter" type="PopupDialog" parent="."]
+margin_left = 307.013
+margin_top = 228.258
+margin_right = 595.013
+margin_bottom = 361.258
+popup_exclusive = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Starter"]
+margin_left = 111.697
+margin_top = 23.9955
+margin_right = 196.697
+margin_bottom = 54.9955
+bbcode_text = " Arcade 
+"
+text = "Arcade 
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Starter"]
+margin_left = 182.873
+margin_top = 70.7465
+margin_right = 229.873
+margin_bottom = 90.7465
+
+[node name="Button2" type="Button" parent="Starter"]
+margin_left = 38.7104
+margin_top = 68.0768
+margin_right = 85.7104
+margin_bottom = 88.0768
+
+[node name="TextEdit" type="TextEdit" parent="Starter"]
+margin_left = 95.4142
+margin_top = 58.2322
+margin_right = 177.414
+margin_bottom = 98.2322
+text = "Number"
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="confirmed" from="LoseDialog" to="." method="_on_LoseDialog_confirmed"]
 [connection signal="confirmed" from="WinDialog" to="." method="_on_WinDialog_confirmed"]

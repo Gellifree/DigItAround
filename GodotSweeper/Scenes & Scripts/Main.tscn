@@ -10,20 +10,20 @@ __meta__ = {
 }
 
 [node name="StartButton" type="Button" parent="."]
-margin_left = 437.0
-margin_top = 214.0
-margin_right = 584.0
-margin_bottom = 234.0
+margin_left = 347.291
+margin_top = 162.796
+margin_right = 494.291
+margin_bottom = 182.796
 text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ExitButton" type="Button" parent="."]
-margin_left = 437.0
-margin_top = 247.0
-margin_right = 583.0
-margin_bottom = 267.0
+margin_left = 347.291
+margin_top = 195.796
+margin_right = 493.291
+margin_bottom = 215.796
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false

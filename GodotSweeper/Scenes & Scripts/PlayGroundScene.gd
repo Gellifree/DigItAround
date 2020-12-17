@@ -9,7 +9,7 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 25
+var matrixSize = 15
 
 var Scale = 1
 
@@ -51,7 +51,7 @@ func generateMap(size):
 	for i in range(size):
 		for j in range(size):
 			var rnd = rngen.randf_range(0, 100)
-			if(rnd > 80):
+			if(rnd > 90):
 				map[i][j] = 1
 		#print(map[i])
 
@@ -188,6 +188,7 @@ func revealZeroes(point):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Starter.popup()
 	#Töltsük ki a játékteret
 	setTileMap(matrixSize)
 	#Hozzuk létre a pályát, ami tárolja hogy hol vannak a bombák
@@ -204,25 +205,25 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		var eventPos = event.position
-		print("Egér koordinátáai:",eventPos)
-		eventPos.x -= 50
-		eventPos.y -= 50
-		print("Eltolt egér koord:", eventPos)
+		#print("Egér koordinátáai:",eventPos)
+		eventPos.x -= 80
+		eventPos.y -= 80
+		#print("Eltolt egér koord:", eventPos)
 		
 		var tile_index = $PlayableTiles.world_to_map(eventPos / Scale)
-		print("worldtomap:", tile_index)
+		#print("worldtomap:", tile_index)
 		tile_index[0] = int(tile_index[0]) #Osztani kell a skálázással
 		tile_index[1] = int(tile_index[1])
 		
 		#print("osztásX:", tile_index[0] / Scale)
 		#print("osztásY:", tile_index[1] / Scale)
-		print("A tileindex...:", tile_index)
+		#print("A tileindex...:", tile_index)
 		
 		var buttonState = event.get_button_index()
 		#print("buttonstate:",buttonState)
 		
 		if(buttonState == 1 and alive == true):
-			print("Mouse click at: ", tile_index) 
+			#print("Mouse click at: ", tile_index) 
 			if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
 				#print("Firstclick értéke: ",firstClick)
 				if(firstClick == 0):
