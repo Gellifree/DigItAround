@@ -188,7 +188,7 @@ func revealZeroes(point):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Starter.popup()
+	#$Starter.popup()
 	#Töltsük ki a játékteret
 	setTileMap(matrixSize)
 	#Hozzuk létre a pályát, ami tárolja hogy hol vannak a bombák
