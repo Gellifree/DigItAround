@@ -9,7 +9,7 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 15
+var matrixSize = 20
 
 var Scale = 1
 
@@ -34,7 +34,8 @@ func didWeWin():
 	#print("marked sum:", marked)
 	#print("bombs sum:", bombs)
 	if(marked + bombs == matrixSize * matrixSize):
-		$WinDialog.popup()
+		#$WinDialog.popup()
+		$winDialog_T.popup()
 
 
 func generateMap(size):
@@ -57,7 +58,7 @@ func generateMap(size):
 
 
 func setTileMap(size):
-	Scale =  (550 / matrixSize) / float(32)
+	Scale =  (900 / matrixSize) / float(32)
 	Scale = Scale
 	#print("osztás eredménye: ",(480 / matrixSize))
 	#print(Scale)
@@ -152,8 +153,8 @@ func revealSingleTile(point):
 func guessTile(point):
 	if(map[point[0]][point[1]] == 1):
 		alive = false
-		print("You lose - Game over")
-		$LoseDialog.popup()
+		#print("You lose - Game over")
+		$loseDialog_T.popup()
 		Reveal()
 	else:
 		didWeWin()
@@ -253,13 +254,13 @@ func _input(event):
 #	pass
 
 
-func _on_BackButton_pressed():
+func _on_smallOk_pressed():
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
 
 
-func _on_LoseDialog_confirmed():
+func _on_smallOkLose_pressed():
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
 
 
-func _on_WinDialog_confirmed():
+func _on_BackButton_T_pressed():
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
