@@ -238,10 +238,10 @@ position = Vector2( 3.24173, 78.6226 )
 texture = ExtResource( 3 )
 
 [node name="IncreaseButton" type="TextureButton" parent="."]
-margin_left = 1032.34
-margin_top = 317.078
-margin_right = 1166.34
-margin_bottom = 416.078
+margin_left = 1032.0
+margin_top = 320.0
+margin_right = 1105.0
+margin_bottom = 416.0
 texture_normal = SubResource( 2 )
 texture_pressed = SubResource( 4 )
 texture_hover = SubResource( 6 )
@@ -264,10 +264,10 @@ __meta__ = {
 }
 
 [node name="ExitButton_T" type="TextureButton" parent="."]
-margin_left = 857.083
-margin_top = 471.601
-margin_right = 1101.08
-margin_bottom = 569.601
+margin_left = 860.523
+margin_top = 457.227
+margin_right = 1101.52
+margin_bottom = 553.227
 texture_normal = SubResource( 14 )
 texture_pressed = SubResource( 16 )
 texture_hover = SubResource( 18 )
@@ -279,10 +279,10 @@ __meta__ = {
 stream = ExtResource( 6 )
 
 [node name="decreaseButton" type="TextureButton" parent="."]
-margin_left = 836.084
-margin_top = 332.41
-margin_right = 916.084
-margin_bottom = 432.41
+margin_left = 836.0
+margin_top = 332.0
+margin_right = 909.0
+margin_bottom = 432.0
 texture_normal = SubResource( 20 )
 texture_pressed = SubResource( 22 )
 texture_hover = SubResource( 24 )

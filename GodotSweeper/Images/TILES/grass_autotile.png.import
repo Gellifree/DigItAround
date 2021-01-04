@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/classic_tileset.png-148b1e808fd9360d3b3563540f648928.stex"
+path="res://.import/grass_autotile.png-ac30d10326212df68921d1fcdb0c0109.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/classic_tileset.png"
-dest_files=[ "res://.import/classic_tileset.png-148b1e808fd9360d3b3563540f648928.stex" ]
+source_file="res://Images/TILES/grass_autotile.png"
+dest_files=[ "res://.import/grass_autotile.png-ac30d10326212df68921d1fcdb0c0109.stex" ]
 
 [params]
 
