@@ -9,7 +9,7 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 20
+var matrixSize = 10
 
 var Scale = 1
 
@@ -58,12 +58,19 @@ func generateMap(size):
 
 
 func setTileMap(size):
-	Scale =  (900 / matrixSize) / float(32)
+	Scale =  (1600 / matrixSize) / float(32)
 	Scale = Scale
 	#print("osztás eredménye: ",(480 / matrixSize))
 	#print(Scale)
+	
 	$PlayableTiles.scale.x = Scale
 	$PlayableTiles.scale.y = Scale
+	
+	$ground.scale.x = Scale
+	$ground.scale.y = Scale
+	
+	$grass.scale.x = Scale
+	$grass.scale.y = Scale
 	
 	
 	for i in range(size):
@@ -138,7 +145,7 @@ func Reveal():
 	for i in range(map.size()):
 		for j in range(map.size()):
 			if(map[i][j] == 1):
-				$PlayableTiles.set_cell(i,j,11)
+				$PlayableTiles.set_cell(i,j,9)
 				pass
 			else:
 				$PlayableTiles.set_cell(i,j,bombCount[i][j])
@@ -148,6 +155,10 @@ func Reveal():
 
 func revealSingleTile(point):
 	$PlayableTiles.set_cell(point[0], point[1], bombCount[point[0]][point[1]])
+	$grass.set_cell(point[0], point[1], -1)
+	$grass.update_bitmask_area(Vector2(point[0], point[1]))
+
+	
 	pass
 
 func guessTile(point):
@@ -197,6 +208,7 @@ func _ready():
 	generateMap(matrixSize)
 	generateBombCount()
 	generateMarker()
+	Reveal()
 	#Reveal()
 	#guessTile([1,1])
 	pass
@@ -236,7 +248,7 @@ func _input(event):
 						map[border[0]][border[1]] = 0
 					firstClick += 1
 					generateBombCount()
-				if($PlayableTiles.get_cell(tile_index[0],tile_index[1]) != 10):
+				if($PlayableTiles.get_cell(tile_index[0],tile_index[1]) != 9):
 					guessTile([tile_index[0],tile_index[1]])
 					firstClick += 1
 		if(buttonState == 2):
@@ -250,8 +262,10 @@ func _input(event):
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	#$grass.update()
+	
+	pass
 
 
 func _on_smallOk_pressed():
