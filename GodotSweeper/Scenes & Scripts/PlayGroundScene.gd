@@ -58,7 +58,7 @@ func generateMap(size):
 
 
 func setTileMap(size):
-	Scale =  (1600 / matrixSize) / float(32)
+	Scale =  (1700 / matrixSize) / float(32)
 	Scale = Scale
 	#print("osztás eredménye: ",(480 / matrixSize))
 	#print(Scale)
@@ -72,6 +72,11 @@ func setTileMap(size):
 	$grass.scale.x = Scale
 	$grass.scale.y = Scale
 	
+	$MarkerGrid.scale.x = Scale
+	$MarkerGrid.scale.y = Scale
+	
+	$rope.scale.x = Scale
+	$rope.scale.y = Scale
 	
 	for i in range(size):
 		for j in range(size):
@@ -161,12 +166,22 @@ func revealSingleTile(point):
 	
 	pass
 
+
+func revealGrassArea():
+	#a->len(map)
+	for i in range(0, len(map)):
+		for j in range(0, len(map)):
+			$grass.set_cell(i,j,-1)
+			$grass.update_bitmask_area(Vector2(i,j))
+	pass
+
 func guessTile(point):
 	if(map[point[0]][point[1]] == 1):
 		alive = false
 		#print("You lose - Game over")
 		$loseDialog_T.popup()
-		Reveal()
+		revealGrassArea()
+		#Reveal()
 	else:
 		didWeWin()
 		if(bombCount[point[0]][point[1]] != 0):
@@ -216,11 +231,22 @@ func _ready():
 
 
 func _input(event):
+	$MarkerGrid.clear()
+	if event is InputEventMouse:
+		var eventPos = event.position
+		eventPos.x -= 600
+		eventPos.y -= 120
+		
+		var tile_index = $PlayableTiles.world_to_map(eventPos / Scale)
+		tile_index[0] = int(tile_index[0]) #Osztani kell a skálázással
+		tile_index[1] = int(tile_index[1])
+		if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
+			$MarkerGrid.set_cell(tile_index[0], tile_index[1], 0)
 	if event is InputEventMouseButton:
 		var eventPos = event.position
 		#print("Egér koordinátáai:",eventPos)
-		eventPos.x -= 80
-		eventPos.y -= 80
+		eventPos.x -= 600
+		eventPos.y -= 120
 		#print("Eltolt egér koord:", eventPos)
 		
 		var tile_index = $PlayableTiles.world_to_map(eventPos / Scale)
@@ -235,6 +261,8 @@ func _input(event):
 		var buttonState = event.get_button_index()
 		#print("buttonstate:",buttonState)
 		
+		
+		
 		if(buttonState == 1 and alive == true):
 			#print("Mouse click at: ", tile_index) 
 			if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
@@ -248,16 +276,17 @@ func _input(event):
 						map[border[0]][border[1]] = 0
 					firstClick += 1
 					generateBombCount()
-				if($PlayableTiles.get_cell(tile_index[0],tile_index[1]) != 9):
+				if($rope.get_cell(tile_index[0],tile_index[1]) != 1):
 					guessTile([tile_index[0],tile_index[1]])
 					firstClick += 1
 		if(buttonState == 2):
 			if(Input.is_action_pressed("Flaging")):
 				if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
-					if($PlayableTiles.get_cell(tile_index[0],tile_index[1]) == 9):
-						$PlayableTiles.set_cell(tile_index[0],tile_index[1],10)
-					elif($PlayableTiles.get_cell(tile_index[0],tile_index[1]) == 10):
-						$PlayableTiles.set_cell(tile_index[0],tile_index[1],9)
+					if($grass.get_cell(tile_index[0], tile_index[1]) != -1):
+						if($rope.get_cell(tile_index[0],tile_index[1]) == -1):
+							$rope.set_cell(tile_index[0],tile_index[1],1)
+						elif($rope.get_cell(tile_index[0],tile_index[1]) == 1):
+							$rope.set_cell(tile_index[0],tile_index[1],-1)
 					
 		
 
