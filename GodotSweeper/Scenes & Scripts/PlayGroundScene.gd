@@ -9,7 +9,7 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 10
+var matrixSize = 13
 
 var Scale = 1
 
@@ -224,11 +224,23 @@ func _ready():
 	generateBombCount()
 	generateMarker()
 	Reveal()
+	drawFence()
+	
 	#Reveal()
 	#guessTile([1,1])
 	pass
 
-
+func drawFence():
+	for i in range(-1, len(map) + 1):
+		$rope.set_cell(i,-1,0)
+		$rope.set_cell(i, len(map), 0)
+		$rope.update_bitmask_area(Vector2(i,-1))
+		$rope.update_bitmask_area(Vector2(i,len(map)))
+	for i in range(len(map)):
+		$rope.set_cell(-1, i, 0)
+		$rope.set_cell(len(map), i, 0)
+		$rope.update_bitmask_area(Vector2(-1,i))
+		$rope.update_bitmask_area(Vector2(len(map), i))
 
 func _input(event):
 	$MarkerGrid.clear()
