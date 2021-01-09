@@ -9,7 +9,7 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 13
+var matrixSize = 15
 
 var Scale = 1
 
