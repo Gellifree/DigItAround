@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/PlayGroundMusic.ogg-393e46c1ba39585e53541e6bfb3094e3.oggstr"
+
+[deps]
+
+source_file="res://Sounds/PlayGroundMusic.ogg"
+dest_files=[ "res://.import/PlayGroundMusic.ogg-393e46c1ba39585e53541e6bfb3094e3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

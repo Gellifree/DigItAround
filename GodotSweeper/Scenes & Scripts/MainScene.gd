@@ -14,6 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$difficulty.text = settings.diffs[settings.difficulty]
 	$MapSize.text = str(settings.map_size)
 	# Később megjavítani a felhőket
 	# Generált felhők legyenek, több pixelart variáció, random irányba, random mérettel
@@ -64,12 +65,36 @@ func _on_decreaseButton_mouse_entered():
 
 
 func _on_IncreaseButton_pressed():
-	settings.map_size += 1
+	if(settings.map_size < 50):
+		settings.map_size += 1
 	$Pressed.play()
 	pass # Replace with function body.
 
 
 func _on_decreaseButton_pressed():
-	settings.map_size -= 1
+	if(settings.map_size > 6):
+		settings.map_size -= 1
 	$Pressed.play()
+	pass # Replace with function body.
+
+
+func _on_Difficulty_up_pressed():
+	$Pressed.play()
+	settings.difficulty = (settings.difficulty + 1) % 3
+	pass # Replace with function body.
+
+
+func _on_Difficulty_down_pressed():
+	settings.difficulty = (settings.difficulty - 1) % 3
+	$Pressed.play()
+	pass # Replace with function body.
+
+
+func _on_Difficulty_up_mouse_entered():
+	$Hover.play()
+	pass # Replace with function body.
+
+
+func _on_Difficulty_down_mouse_entered():
+	$Hover.play()
 	pass # Replace with function body.

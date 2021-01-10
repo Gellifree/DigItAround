@@ -6,6 +6,7 @@ var alive = true
 var map = []
 var bombCount = []
 var marker = []
+var flagCount = 0
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
@@ -54,7 +55,15 @@ func generateMap(size):
 	for i in range(size):
 		for j in range(size):
 			var rnd = rngen.randf_range(0, 100)
-			if(rnd > 90):
+			var treshold = 0
+			if(settings.difficulty == 0):
+				treshold = 90
+			elif(settings.difficulty == 1):
+				treshold = 85
+			else:
+				treshold = 80
+			
+			if(rnd > treshold):
 				map[i][j] = 1
 		#print(map[i])
 
@@ -237,6 +246,7 @@ func _ready():
 	generateMarker()
 	Reveal()
 	drawFence()
+	$UI/MineValue.text = str(sumMatrix(map))
 	
 	#Reveal()
 	#guessTile([1,1])
@@ -300,6 +310,7 @@ func _input(event):
 						map[border[0]][border[1]] = 0
 					firstClick += 1
 					generateBombCount()
+					$UI/MineValue.text = str(sumMatrix(map))
 				if($rope.get_cell(tile_index[0],tile_index[1]) != 1):
 					guessTile([tile_index[0],tile_index[1]])
 					firstClick += 1
@@ -313,7 +324,9 @@ func _input(event):
 						$Flag.play()
 						if($rope.get_cell(tile_index[0],tile_index[1]) == -1):
 							$rope.set_cell(tile_index[0],tile_index[1],1)
+							flagCount += 1
 						elif($rope.get_cell(tile_index[0],tile_index[1]) == 1):
+							flagCount -=1 
 							$rope.set_cell(tile_index[0],tile_index[1],-1)
 					
 		
@@ -321,7 +334,7 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#$grass.update()
-	
+	$UI/FlagValue.text = str(flagCount)
 	pass
 
 

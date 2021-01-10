@@ -14,7 +14,7 @@
 [ext_resource path="res://Sounds/dig_3.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/flag.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/win.wav" type="AudioStream" id=14]
-[ext_resource path="res://Sounds/Darkness-Approaches_Looping.wav" type="AudioStream" id=15]
+[ext_resource path="res://Sounds/PlayGroundMusic.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Sounds/lose.wav" type="AudioStream" id=16]
 
 [sub_resource type="TileSet" id=1]
@@ -490,6 +490,44 @@ stream = ExtResource( 16 )
 stream = ExtResource( 15 )
 volume_db = -5.275
 autoplay = true
+
+[node name="UI" type="ColorRect" parent="."]
+margin_left = 1630.0
+margin_top = 432.0
+margin_right = 1923.0
+margin_bottom = 558.0
+
+[node name="MineLabel_T" type="RichTextLabel" parent="UI"]
+margin_left = 13.0
+margin_top = 27.0
+margin_right = 150.0
+margin_bottom = 60.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Összes akna:"
+
+[node name="FlagLabel_T" type="RichTextLabel" parent="UI"]
+margin_left = 8.00903
+margin_top = 60.0678
+margin_right = 136.009
+margin_bottom = 91.0678
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Zászló letéve:"
+
+[node name="MineValue" type="RichTextLabel" parent="UI"]
+margin_left = 102.0
+margin_top = 27.0
+margin_right = 138.0
+margin_bottom = 45.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "0"
+
+[node name="FlagValue" type="RichTextLabel" parent="UI"]
+margin_left = 101.636
+margin_top = 59.669
+margin_right = 137.636
+margin_bottom = 79.669
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "0"
 [connection signal="pressed" from="BackButton_T" to="." method="_on_BackButton_T_pressed"]
 [connection signal="pressed" from="winDialog_T/winDialog/smallOkWin" to="." method="_on_smallOk_pressed"]
 [connection signal="pressed" from="loseDialog_T/loseDialog/smallOkLose" to="." method="_on_smallOkLose_pressed"]
