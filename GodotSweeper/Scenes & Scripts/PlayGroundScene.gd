@@ -9,7 +9,7 @@ var marker = []
 #Az első kattintásnál sosem lehet akna, ezért figyeljük hogy az első kattintás-e, 
 #és ha igen, akkor a kattintás helyéről ha van, elvesszük az aknát, és körülötte is!
 var firstClick = 0
-var matrixSize = 15
+var matrixSize = settings.map_size
 
 var Scale = 1
 
@@ -35,6 +35,8 @@ func didWeWin():
 	#print("bombs sum:", bombs)
 	if(marked + bombs == matrixSize * matrixSize):
 		#$WinDialog.popup()
+		$Win.play()
+		$BackgroundMusic.stop()
 		$winDialog_T.popup()
 
 
@@ -160,8 +162,15 @@ func Reveal():
 
 func revealSingleTile(point):
 	$PlayableTiles.set_cell(point[0], point[1], bombCount[point[0]][point[1]])
+	if($grass.get_cell(point[0], point[1]) == 1):
+		var rnd = rngen.randf_range(0, 100)
+		if(rnd > 50):
+			$Dig.play()
+		else:
+			$DigVariation.play()
 	$grass.set_cell(point[0], point[1], -1)
 	$grass.update_bitmask_area(Vector2(point[0], point[1]))
+	
 
 	
 	pass
@@ -179,6 +188,9 @@ func guessTile(point):
 	if(map[point[0]][point[1]] == 1):
 		alive = false
 		#print("You lose - Game over")
+		$Bone.play()
+		$BackgroundMusic.stop()
+		$Lose.play()
 		$loseDialog_T.popup()
 		revealGrassArea()
 		#Reveal()
@@ -293,8 +305,12 @@ func _input(event):
 					firstClick += 1
 		if(buttonState == 2):
 			if(Input.is_action_pressed("Flaging")):
+				
+				
 				if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
+					
 					if($grass.get_cell(tile_index[0], tile_index[1]) != -1):
+						$Flag.play()
 						if($rope.get_cell(tile_index[0],tile_index[1]) == -1):
 							$rope.set_cell(tile_index[0],tile_index[1],1)
 						elif($rope.get_cell(tile_index[0],tile_index[1]) == 1):

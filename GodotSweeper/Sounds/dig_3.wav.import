@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dig_3.wav-015dcea52bd8a5f8943352936d6952c3.sample"
+
+[deps]
+
+source_file="res://Sounds/dig_3.wav"
+dest_files=[ "res://.import/dig_3.wav-015dcea52bd8a5f8943352936d6952c3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

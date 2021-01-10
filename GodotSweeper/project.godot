@@ -19,6 +19,10 @@ config/name="DigItAround"
 run/main_scene="res://Scenes & Scripts/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+settings="*res://settings.gd"
+
 [display]
 
 window/size/width=1920

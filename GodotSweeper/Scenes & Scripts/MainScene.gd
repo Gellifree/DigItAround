@@ -8,11 +8,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$MapSize.text = str(settings.map_size)
 	# Később megjavítani a felhőket
 	# Generált felhők legyenek, több pixelart variáció, random irányba, random mérettel
 	$ColorRect/cloud_1.position += Vector2(0.6,0.1)
@@ -24,13 +26,50 @@ func _process(delta):
 
 func _on_StartButton_T_button_down():
 	#Nem működik a jelenet váltás miatt
-	$AudioStreamPlayer.play()
+	pass
+	
 
 
 func _on_StartButton_T_pressed():
+	$Pressed.play()
+	yield($Pressed, "finished")
 	get_tree().change_scene("res://Scenes & Scripts/PlayGround.tscn")
 
 
 func _on_ExitButton_T_pressed():
+	$Pressed.play()
+	yield($Pressed, "finished")
 	get_tree().quit()
 
+
+
+func _on_StartButton_T_mouse_entered():
+	$Hover.play()
+	pass # Replace with function body.
+
+
+func _on_IncreaseButton_mouse_entered():
+	$Hover.play()
+	pass # Replace with function body.
+
+
+func _on_ExitButton_T_mouse_entered():
+	$Hover.play()
+	pass # Replace with function body.
+
+
+func _on_decreaseButton_mouse_entered():
+	$Hover.play()
+	pass # Replace with function body.
+
+
+func _on_IncreaseButton_pressed():
+	settings.map_size += 1
+	$Pressed.play()
+	pass # Replace with function body.
+
+
+func _on_decreaseButton_pressed():
+	settings.map_size -= 1
+	$Pressed.play()
+	pass # Replace with function body.
