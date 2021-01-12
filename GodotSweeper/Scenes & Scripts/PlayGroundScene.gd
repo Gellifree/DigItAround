@@ -14,6 +14,8 @@ var matrixSize = settings.map_size
 
 var Scale = 1
 
+var time = 0
+
 #Győzelmi kondíció
 #A markerben bennevan hogy hány darab mezőt fedtünk fel, ha összegezzük a bennelévő eggyeseket
 #A map-ben bennevan, hogy hány darab bombánk van
@@ -335,6 +337,7 @@ func _input(event):
 func _process(delta):
 	#$grass.update()
 	$UI/FlagValue.text = str(flagCount)
+	$TimeLabel.text = str(time) + " s"
 	pass
 
 
@@ -348,3 +351,8 @@ func _on_smallOkLose_pressed():
 
 func _on_BackButton_T_pressed():
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
+
+
+func _on_Timer_timeout():
+	time += 0.1
+	pass # Replace with function body.

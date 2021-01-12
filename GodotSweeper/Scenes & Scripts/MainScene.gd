@@ -14,16 +14,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$difficulty.text = settings.diffs[settings.difficulty]
+	$difficulty.text = settings.diffs[settings.difficulty]	
+	$DifficultySprite.texture = settings.images[settings.difficulty]
+	
+	
 	$MapSize.text = str(settings.map_size)
-	# Később megjavítani a felhőket
-	# Generált felhők legyenek, több pixelart variáció, random irányba, random mérettel
-	$ColorRect/cloud_1.position += Vector2(0.6,0.1)
-	$ColorRect/cloud_2.position += Vector2(0.4,-0.1)
-	$ColorRect/cloud_3.position += Vector2(0.5,0)
-	$ColorRect/cloud_4.position += Vector2(0.4,0)
-	$ColorRect/cloud_5.position += Vector2(0.3,0)
-#	pass
+	var mapsize_text = str(settings.map_size)
+	if(int(mapsize_text) > 9):
+		$MapSizeHolder/MapNumbers.set_cell(0,0, int(mapsize_text[0]))
+		$MapSizeHolder/MapNumbers.set_cell(1,0, int(mapsize_text[1]))
+	else:
+		$MapSizeHolder/MapNumbers.set_cell(0,0, -1)
+		$MapSizeHolder/MapNumbers.set_cell(1,0, int(mapsize_text[0]))
 
 func _on_StartButton_T_button_down():
 	#Nem működik a jelenet váltás miatt

@@ -1,10 +1,9 @@
 [gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes & Scripts/MainScene.gd" type="Script" id=1]
-[ext_resource path="res://Images/background.png" type="Texture" id=2]
-[ext_resource path="res://Images/miniDisplay.png" type="Texture" id=3]
-[ext_resource path="res://Images/cloud_2.png" type="Texture" id=4]
-[ext_resource path="res://Images/cloud_1.png" type="Texture" id=5]
+[ext_resource path="res://Images/EasyTable.png" type="Texture" id=2]
+[ext_resource path="res://Images/SmallHolder.png" type="Texture" id=3]
+[ext_resource path="res://Images/buttonNumbers_tiles.png" type="Texture" id=4]
 [ext_resource path="res://Sounds/MenuBackground.ogg" type="AudioStream" id=6]
 [ext_resource path="res://ground.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Images/title.png" type="Texture" id=8]
@@ -25,6 +24,148 @@
 [ext_resource path="res://Images/exitButton_1.png" type="Texture" id=23]
 [ext_resource path="res://Images/exitButton_3.png" type="Texture" id=24]
 [ext_resource path="res://Images/exitButton_2.png" type="Texture" id=25]
+
+[sub_resource type="TileSet" id=1]
+0/name = "buttonNumbers_tiles.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "buttonNumbers_tiles.png 1"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 32, 0, 32, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "buttonNumbers_tiles.png 2"
+2/texture = ExtResource( 4 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 64, 0, 32, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "buttonNumbers_tiles.png 3"
+3/texture = ExtResource( 4 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 96, 0, 32, 32 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "buttonNumbers_tiles.png 4"
+4/texture = ExtResource( 4 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 128, 0, 32, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "buttonNumbers_tiles.png 5"
+5/texture = ExtResource( 4 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 32, 32, 32 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "buttonNumbers_tiles.png 6"
+6/texture = ExtResource( 4 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 32, 32, 32, 32 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "buttonNumbers_tiles.png 7"
+7/texture = ExtResource( 4 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 64, 32, 32, 32 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "buttonNumbers_tiles.png 8"
+8/texture = ExtResource( 4 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 96, 32, 32, 32 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "buttonNumbers_tiles.png 9"
+9/texture = ExtResource( 4 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 128, 32, 32, 32 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
 
 [node name="Main" type="Control"]
 script = ExtResource( 1 )
@@ -54,102 +195,58 @@ texture = ExtResource( 8 )
 scale = Vector2( 3, 3 )
 tile_data = PoolIntArray( 524277, 0, 0, 524278, 0, 131073, 524279, 0, 131073, 524280, 0, 1, 524281, 0, 2, 589813, 0, 65536, 589817, 0, 65538, 655349, 0, 65536, 655353, 0, 65536, 720885, 0, 131072, 720886, 0, 131073, 720887, 0, 131073, 720888, 0, 131073, 720889, 0, 131074, 786452, 0, 0, 786453, 0, 1, 786454, 0, 2, 851988, 0, 65538, 851990, 0, 65538, 917524, 0, 65538, 917526, 0, 65538, 983060, 0, 65536, 983062, 0, 65536, 1048596, 0, 65538, 1048598, 0, 65538, 1179634, 0, 0, 1179635, 0, 1, 1179636, 0, 1, 1179637, 0, 1, 1179638, 0, 2, 1114132, 0, 131072, 1114133, 0, 131073, 1114134, 0, 131074, 1245170, 0, 65538, 1245174, 0, 65536, 1310706, 0, 65536, 1310710, 0, 65538, 1376242, 0, 65536, 1376246, 0, 65536, 1441778, 0, 131072, 1441779, 0, 1, 1441780, 0, 131073, 1441781, 0, 1, 1441782, 0, 131074 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-margin_left = -19.0
-margin_top = -19.0
-margin_right = 2004.0
-margin_bottom = 1094.0
-color = Color( 0.203922, 0.631373, 0.988235, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="cloud_2" type="Sprite" parent="ColorRect"]
-position = Vector2( 733.155, 504.588 )
-scale = Vector2( 1.30793, 1.32916 )
-texture = ExtResource( 4 )
-
-[node name="cloud_3" type="Sprite" parent="ColorRect"]
-position = Vector2( 276.5, 341.072 )
-scale = Vector2( 1.05535, 1.1208 )
-texture = ExtResource( 4 )
-
-[node name="cloud_5" type="Sprite" parent="ColorRect"]
-position = Vector2( 516.72, 116.906 )
-scale = Vector2( 0.753668, 0.678657 )
-texture = ExtResource( 4 )
-
-[node name="cloud_1" type="Sprite" parent="ColorRect"]
-position = Vector2( 132.57, 145.385 )
-scale = Vector2( 0.656305, 0.624188 )
-texture = ExtResource( 5 )
-
-[node name="cloud_4" type="Sprite" parent="ColorRect"]
-position = Vector2( 774.147, 220.9 )
-scale = Vector2( 1.16597, 1.12552 )
-texture = ExtResource( 5 )
-
-[node name="background" type="Sprite" parent="ColorRect"]
-position = Vector2( 986.158, 332.788 )
-texture = ExtResource( 2 )
-
-[node name="miniDisplay" type="Sprite" parent="ColorRect/background"]
-position = Vector2( 3.24173, 78.6226 )
-texture = ExtResource( 3 )
-
 [node name="StartButton_T" type="TextureButton" parent="."]
-margin_left = 866.253
-margin_top = 394.081
-margin_right = 1075.25
-margin_bottom = 476.081
+margin_left = 858.702
+margin_top = 387.474
+margin_right = 1104.7
+margin_bottom = 483.474
 action_mode = 0
 texture_normal = ExtResource( 14 )
 texture_pressed = ExtResource( 15 )
 texture_hover = ExtResource( 16 )
-expand = true
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="IncreaseButton" type="TextureButton" parent="."]
-margin_left = 1019.99
-margin_top = 492.368
-margin_right = 1075.99
-margin_bottom = 552.368
+margin_left = 1087.88
+margin_top = 512.841
+margin_right = 1147.88
+margin_bottom = 608.841
 action_mode = 0
 texture_normal = ExtResource( 17 )
-texture_pressed = ExtResource( 19 )
-texture_hover = ExtResource( 18 )
-expand = true
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 19 )
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="decreaseButton" type="TextureButton" parent="."]
-margin_left = 866.077
-margin_top = 491.956
-margin_right = 923.077
-margin_bottom = 552.956
+margin_left = 812.099
+margin_top = 510.587
+margin_right = 872.099
+margin_bottom = 606.587
 action_mode = 0
 texture_normal = ExtResource( 22 )
-texture_pressed = ExtResource( 21 )
-texture_hover = ExtResource( 20 )
-expand = true
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 21 )
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ExitButton_T" type="TextureButton" parent="."]
-margin_left = 870.009
-margin_top = 647.111
-margin_right = 1072.01
-margin_bottom = 726.111
+margin_left = 848.359
+margin_top = 884.495
+margin_right = 1094.36
+margin_bottom = 980.495
 action_mode = 0
 texture_normal = ExtResource( 23 )
 texture_pressed = ExtResource( 25 )
 texture_hover = ExtResource( 24 )
-expand = true
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -171,10 +268,10 @@ autoplay = true
 [node name="MapSize" type="RichTextLabel" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 0.0392157, 0.0156863, 0.0156863, 1 )
-margin_left = 964.005
-margin_top = 515.487
-margin_right = 997.005
-margin_bottom = 537.487
+margin_left = 963.005
+margin_top = 546.487
+margin_right = 996.005
+margin_bottom = 568.487
 bbcode_text = " 10"
 text = " 10"
 __meta__ = {
@@ -182,43 +279,70 @@ __meta__ = {
 }
 
 [node name="Difficulty_up" type="TextureButton" parent="."]
-margin_left = 1020.32
-margin_top = 570.921
-margin_right = 1076.32
-margin_bottom = 630.921
+margin_left = 1122.09
+margin_top = 645.814
+margin_right = 1182.09
+margin_bottom = 741.814
 action_mode = 0
 texture_normal = ExtResource( 17 )
-texture_pressed = ExtResource( 19 )
-texture_hover = ExtResource( 18 )
-expand = true
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 19 )
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Difficulty_down" type="TextureButton" parent="."]
-margin_left = 864.659
-margin_top = 569.566
-margin_right = 922.659
-margin_bottom = 631.566
+margin_left = 775.547
+margin_top = 652.095
+margin_right = 835.547
+margin_bottom = 748.095
 action_mode = 0
 texture_normal = ExtResource( 22 )
-texture_pressed = ExtResource( 21 )
-texture_hover = ExtResource( 20 )
-expand = true
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 21 )
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DifficultySprite" type="Sprite" parent="."]
+position = Vector2( 978.819, 725.3 )
+texture = ExtResource( 2 )
+
 [node name="difficulty" type="RichTextLabel" parent="."]
-margin_left = 950.0
-margin_top = 581.0
-margin_right = 1002.0
-margin_bottom = 602.0
+margin_left = 959.247
+margin_top = 640.584
+margin_right = 1011.25
+margin_bottom = 661.584
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Easy"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MapSizeHolder" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="One" type="Sprite" parent="MapSizeHolder"]
+position = Vector2( 1029.84, 557.602 )
+texture = ExtResource( 3 )
+
+[node name="Ten" type="Sprite" parent="MapSizeHolder"]
+position = Vector2( 937.697, 558.351 )
+texture = ExtResource( 3 )
+
+[node name="MapNumbers" type="TileMap" parent="MapSizeHolder"]
+position = Vector2( 889.557, 507.547 )
+scale = Vector2( 3, 3 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0 )
 [connection signal="button_down" from="StartButton_T" to="." method="_on_StartButton_T_button_down"]
 [connection signal="mouse_entered" from="StartButton_T" to="." method="_on_StartButton_T_mouse_entered"]
 [connection signal="pressed" from="StartButton_T" to="." method="_on_StartButton_T_pressed"]
