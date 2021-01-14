@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes & Scripts/PlayGroundScene.gd" type="Script" id=1]
 [ext_resource path="res://Images/TILES/numbers_bones.png" type="Texture" id=2]
@@ -22,6 +22,10 @@
 [ext_resource path="res://Images/backButton_1.png" type="Texture" id=20]
 [ext_resource path="res://Images/backButton_2.png" type="Texture" id=21]
 [ext_resource path="res://Images/testLayout_tileset.png" type="Texture" id=22]
+[ext_resource path="res://Images/side_wall.png" type="Texture" id=23]
+[ext_resource path="res://Images/rightButton_1.png" type="Texture" id=24]
+[ext_resource path="res://Sounds/ButtonPressed.wav" type="AudioStream" id=25]
+[ext_resource path="res://Sounds/ButtonHover.wav" type="AudioStream" id=26]
 
 [sub_resource type="TileSet" id=1]
 0/name = "numbers_bones.png 0"
@@ -165,7 +169,7 @@
 9/shapes = [  ]
 9/z_index = 0
 
-[sub_resource type="TileSet" id=20]
+[sub_resource type="TileSet" id=2]
 0/name = "marker.png 0"
 0/texture = ExtResource( 9 )
 0/tex_offset = Vector2( 0, 0 )
@@ -181,7 +185,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=21]
+[sub_resource type="TileSet" id=3]
 0/name = "testLayout_tileset.png 0"
 0/texture = ExtResource( 22 )
 0/tex_offset = Vector2( 0, 0 )
@@ -497,9 +501,10 @@ __meta__ = {
 }
 
 [node name="ground" parent="." instance=ExtResource( 6 )]
+position = Vector2( 540, 120 )
 
 [node name="PlayableTiles" type="TileMap" parent="."]
-position = Vector2( 600, 120 )
+position = Vector2( 540, 120 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -508,6 +513,7 @@ __meta__ = {
 }
 
 [node name="grass" parent="." instance=ExtResource( 7 )]
+position = Vector2( 540, 120 )
 
 [node name="BackButton_T" type="TextureButton" parent="."]
 margin_left = 1735.35
@@ -521,36 +527,84 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="winDialog_T" type="WindowDialog" parent="."]
-visible = true
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 756.925
-margin_top = 74.0839
-margin_right = 1166.92
-margin_bottom = 367.084
-rect_clip_content = true
-popup_exclusive = true
+[node name="rope" parent="." instance=ExtResource( 8 )]
+position = Vector2( 540, 120 )
+
+[node name="MarkerGrid" type="TileMap" parent="."]
+position = Vector2( 540, 120 )
+tile_set = SubResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="Dig" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 1
+position = Vector2( 978.944, 538.207 )
+stream = ExtResource( 11 )
+attenuation = 0.594604
+
+[node name="DigVariation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Bone" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Flag" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -5.275
+autoplay = true
+
+[node name="side_wall" type="Sprite" parent="."]
+position = Vector2( 1872.05, 506.808 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 23 )
+
+[node name="MineValue" type="RichTextLabel" parent="side_wall"]
+margin_left = 4.31799
+margin_top = -13.9722
+margin_right = 38.318
+margin_bottom = 4.0278
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "0"
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="winDialog" type="Sprite" parent="winDialog_T"]
-position = Vector2( 204.353, 146.651 )
-texture = ExtResource( 4 )
-
-[node name="smallOkWin" type="TextureButton" parent="winDialog_T/winDialog"]
-margin_left = 132.99
-margin_top = 70.3597
-margin_right = 178.99
-margin_bottom = 118.36
-texture_normal = ExtResource( 17 )
-texture_pressed = ExtResource( 18 )
-texture_hover = ExtResource( 3 )
-expand = true
+[node name="FlagValue" type="RichTextLabel" parent="side_wall"]
+margin_left = 3.97308
+margin_top = 9.25809
+margin_right = 39.9731
+margin_bottom = 29.2581
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Layout" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 9, 0, 13, 10, 0, 14, 10, 0, 15, 10, 0, 16, 10, 0, 17, 11, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="TimeLabel" type="RichTextLabel" parent="."]
+margin_left = 938.198
+margin_top = 34.6056
+margin_right = 1050.2
+margin_bottom = 74.6057
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "00:00"
 
 [node name="loseDialog_T" type="WindowDialog" parent="."]
 visible = true
@@ -583,95 +637,63 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="rope" parent="." instance=ExtResource( 8 )]
+[node name="winDialog_T" type="WindowDialog" parent="."]
+visible = true
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 758.707
+margin_top = 70.9495
+margin_right = 1168.7
+margin_bottom = 363.95
+rect_clip_content = true
+popup_exclusive = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
 
-[node name="MarkerGrid" type="TileMap" parent="."]
-position = Vector2( 600, 120 )
-tile_set = SubResource( 20 )
-cell_size = Vector2( 16, 16 )
-format = 1
+[node name="winDialog" type="Sprite" parent="winDialog_T"]
+position = Vector2( 204.353, 146.651 )
+texture = ExtResource( 4 )
 
-[node name="Dig" type="AudioStreamPlayer2D" parent="."]
-pause_mode = 1
-position = Vector2( 978.944, 538.207 )
-stream = ExtResource( 11 )
-attenuation = 0.594604
+[node name="smallOkWin" type="TextureButton" parent="winDialog_T/winDialog"]
+margin_left = 132.99
+margin_top = 70.3597
+margin_right = 178.99
+margin_bottom = 118.36
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="DigVariation" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
+[node name="scale" type="Sprite" parent="winDialog_T"]
+self_modulate = Color( 0.12549, 0.0392157, 0.0392157, 0 )
+position = Vector2( 92.9172, 210.663 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 24 )
 
-[node name="Bone" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
-
-[node name="Flag" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-
-[node name="Win" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-
-[node name="Lose" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 16 )
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
-volume_db = -5.275
-autoplay = true
-
-[node name="UI" type="ColorRect" parent="."]
-margin_left = 1630.0
-margin_top = 432.0
-margin_right = 1923.0
-margin_bottom = 558.0
-
-[node name="MineLabel_T" type="RichTextLabel" parent="UI"]
-margin_left = 13.0
-margin_top = 27.0
-margin_right = 150.0
-margin_bottom = 60.0
+[node name="timeLabel" type="RichTextLabel" parent="winDialog_T/scale"]
+margin_left = 33.3178
+margin_top = -22.5067
+margin_right = 108.318
+margin_bottom = -2.50674
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Összes akna:"
+text = "0.0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="FlagLabel_T" type="RichTextLabel" parent="UI"]
-margin_left = 8.00903
-margin_top = 60.0678
-margin_right = 136.009
-margin_bottom = 91.0678
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Zászló letéve:"
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
 
-[node name="MineValue" type="RichTextLabel" parent="UI"]
-margin_left = 102.0
-margin_top = 27.0
-margin_right = 138.0
-margin_bottom = 45.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "0"
-
-[node name="FlagValue" type="RichTextLabel" parent="UI"]
-margin_left = 101.636
-margin_top = 59.669
-margin_right = 137.636
-margin_bottom = 79.669
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "0"
-
-[node name="Layout" type="TileMap" parent="."]
-tile_set = SubResource( 21 )
-format = 1
-tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 9, 0, 13, 10, 0, 14, 10, 0, 15, 10, 0, 16, 10, 0, 17, 11, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0 )
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
-[node name="TimeLabel" type="RichTextLabel" parent="."]
-margin_left = 938.198
-margin_top = 34.6056
-margin_right = 1050.2
-margin_bottom = 74.6057
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "00:00"
+[node name="Pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+[connection signal="mouse_entered" from="BackButton_T" to="." method="_on_BackButton_T_mouse_entered"]
 [connection signal="pressed" from="BackButton_T" to="." method="_on_BackButton_T_pressed"]
-[connection signal="pressed" from="winDialog_T/winDialog/smallOkWin" to="." method="_on_smallOk_pressed"]
-[connection signal="pressed" from="loseDialog_T/loseDialog/smallOkLose" to="." method="_on_smallOkLose_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="mouse_entered" from="loseDialog_T/loseDialog/smallOkLose" to="." method="_on_smallOkLose_mouse_entered"]
+[connection signal="pressed" from="loseDialog_T/loseDialog/smallOkLose" to="." method="_on_smallOkLose_pressed"]
+[connection signal="mouse_entered" from="winDialog_T/winDialog/smallOkWin" to="." method="_on_smallOkWin_mouse_entered"]
+[connection signal="pressed" from="winDialog_T/winDialog/smallOkWin" to="." method="_on_smallOk_pressed"]

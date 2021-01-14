@@ -28,26 +28,24 @@ func sumMatrix(matrix):
 		for j in range(len(matrix)):
 			result += matrix[i][j]
 	return result
-
+var once = 0
 func didWeWin():
 	var marked = 0
 	var bombs = 0
 	marked = sumMatrix(marker)
 	bombs = sumMatrix(map)
-	#print("marked sum:", marked)
-	#print("bombs sum:", bombs)
 	if(marked + bombs == matrixSize * matrixSize):
-		#$WinDialog.popup()
-		$Win.play()
 		$BackgroundMusic.stop()
+		$Timer.stop()
 		$winDialog_T.popup()
+		if(once < 1):
+			$Win.play()
+		once += 1
 
 
 func generateMap(size):
 	#Generáljunk le egy pályát
-	
 	#Töltsük fel nullákkal
-	#print("Térkép elkészítése\n")
 	for i in range(size):
 		map.append([])
 		for j in range(size):
@@ -67,14 +65,11 @@ func generateMap(size):
 			
 			if(rnd > treshold):
 				map[i][j] = 1
-		#print(map[i])
 
 
 func setTileMap(size):
 	Scale =  (1700 / matrixSize) / float(32)
 	Scale = Scale
-	#print("osztás eredménye: ",(480 / matrixSize))
-	#print(Scale)
 	
 	$PlayableTiles.scale.x = Scale
 	$PlayableTiles.scale.y = Scale
@@ -132,7 +127,6 @@ func sumData(list):
 	return sum
 
 func generateBombCount():
-	#print("Bomba megszámlásáért felelős tömb készítése\n")
 	bombCount = []
 	for i in range(map.size()):
 		bombCount.append([])
@@ -143,13 +137,11 @@ func generateBombCount():
 		var sumList = []
 		for j in range(map.size()):
 			sumList = validBorders([i ,j])
-			#print("Szumlist: ",sumList)
 			#Ezek azok a koordináták, ahol az otlévő adatokat összekell adni
 			var summableList = []
 			for s in range(len(sumList)):
 				summableList.append(map[sumList[s][0]][sumList[s][1]])
 			bombCount[i][j] = sumData(summableList)
-		#print(bombCount[i])
 
 func generateMarker():
 	for i in range(map.size()):
@@ -167,9 +159,6 @@ func Reveal():
 				pass
 			else:
 				$PlayableTiles.set_cell(i,j,bombCount[i][j])
-				#if(bombCount[i][j] == 0):
-				#	$PlayableTiles.set_cell(j, i, 9)
-				pass
 
 func revealSingleTile(point):
 	$PlayableTiles.set_cell(point[0], point[1], bombCount[point[0]][point[1]])
@@ -181,10 +170,6 @@ func revealSingleTile(point):
 			$DigVariation.play()
 	$grass.set_cell(point[0], point[1], -1)
 	$grass.update_bitmask_area(Vector2(point[0], point[1]))
-	
-
-	
-	pass
 
 
 func revealGrassArea():
@@ -193,18 +178,16 @@ func revealGrassArea():
 		for j in range(0, len(map)):
 			$grass.set_cell(i,j,-1)
 			$grass.update_bitmask_area(Vector2(i,j))
-	pass
 
 func guessTile(point):
 	if(map[point[0]][point[1]] == 1):
 		alive = false
-		#print("You lose - Game over")
 		$Bone.play()
 		$BackgroundMusic.stop()
 		$Lose.play()
+		$Timer.stop()
 		$loseDialog_T.popup()
 		revealGrassArea()
-		#Reveal()
 	else:
 		didWeWin()
 		if(bombCount[point[0]][point[1]] != 0):
@@ -236,9 +219,7 @@ func revealZeroes(point):
 			revealZeroes(zeroes[i])
 	
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	#$Starter.popup()
 	#Töltsük ki a játékteret
 	setTileMap(matrixSize)
 	#Hozzuk létre a pályát, ami tárolja hogy hol vannak a bombák
@@ -248,11 +229,7 @@ func _ready():
 	generateMarker()
 	Reveal()
 	drawFence()
-	$UI/MineValue.text = str(sumMatrix(map))
-	
-	#Reveal()
-	#guessTile([1,1])
-	pass
+	$side_wall/MineValue.text = str(sumMatrix(map))
 
 func drawFence():
 	for i in range(-1, len(map) + 1):
@@ -270,7 +247,7 @@ func _input(event):
 	$MarkerGrid.clear()
 	if event is InputEventMouse:
 		var eventPos = event.position
-		eventPos.x -= 600
+		eventPos.x -= 540
 		eventPos.y -= 120
 		
 		var tile_index = $PlayableTiles.world_to_map(eventPos / Scale)
@@ -280,48 +257,31 @@ func _input(event):
 			$MarkerGrid.set_cell(tile_index[0], tile_index[1], 0)
 	if event is InputEventMouseButton:
 		var eventPos = event.position
-		#print("Egér koordinátáai:",eventPos)
-		eventPos.x -= 600
+		eventPos.x -= 540
 		eventPos.y -= 120
-		#print("Eltolt egér koord:", eventPos)
 		
 		var tile_index = $PlayableTiles.world_to_map(eventPos / Scale)
-		#print("worldtomap:", tile_index)
 		tile_index[0] = int(tile_index[0]) #Osztani kell a skálázással
 		tile_index[1] = int(tile_index[1])
 		
-		#print("osztásX:", tile_index[0] / Scale)
-		#print("osztásY:", tile_index[1] / Scale)
-		#print("A tileindex...:", tile_index)
-		
 		var buttonState = event.get_button_index()
-		#print("buttonstate:",buttonState)
-		
-		
 		
 		if(buttonState == 1 and alive == true):
-			#print("Mouse click at: ", tile_index) 
 			if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
-				#print("Firstclick értéke: ",firstClick)
 				if(firstClick == 0):
 					map[tile_index[0]][tile_index[1]] = 0
-					#print("map:",map[tile_index[0]][tile_index[1]])
 					var validBorder = validBorders(tile_index)
-					#print("list of validborders:",validBorder)
 					for border in validBorder:
 						map[border[0]][border[1]] = 0
 					firstClick += 1
 					generateBombCount()
-					$UI/MineValue.text = str(sumMatrix(map))
+					$side_wall/MineValue.text = str(sumMatrix(map))
 				if($rope.get_cell(tile_index[0],tile_index[1]) != 1):
 					guessTile([tile_index[0],tile_index[1]])
 					firstClick += 1
 		if(buttonState == 2):
 			if(Input.is_action_pressed("Flaging")):
-				
-				
 				if(tile_index[0] >= 0 and tile_index[0] < len(map) and tile_index[1] >= 0 and tile_index[1] < len(map)):
-					
 					if($grass.get_cell(tile_index[0], tile_index[1]) != -1):
 						$Flag.play()
 						if($rope.get_cell(tile_index[0],tile_index[1]) == -1):
@@ -333,26 +293,41 @@ func _input(event):
 					
 		
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#$grass.update()
-	$UI/FlagValue.text = str(flagCount)
+	$side_wall/FlagValue.text = str(flagCount)
 	$TimeLabel.text = str(time) + " s"
-	pass
+	$winDialog_T/scale/timeLabel.text = str(time) + " s"
 
 
 func _on_smallOk_pressed():
+	$Pressed.play()
+	yield($Pressed, "finished")
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
 
 
 func _on_smallOkLose_pressed():
+	$Pressed.play()
+	yield($Pressed, "finished")
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
 
 
 func _on_BackButton_T_pressed():
+	$Pressed.play()
+	yield($Pressed, "finished")
 	get_tree().change_scene("res://Scenes & Scripts/Main.tscn")
 
 
 func _on_Timer_timeout():
 	time += 0.1
-	pass # Replace with function body.
+
+
+func _on_smallOkLose_mouse_entered():
+	$Hover.play()
+
+
+func _on_smallOkWin_mouse_entered():
+	$Hover.play()
+
+
+func _on_BackButton_T_mouse_entered():
+	$Hover.play()
