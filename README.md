@@ -1,3 +1,3 @@
-# GodotSweeper aknakereső
+# DigItAround
 
-beadandó projekt Szkript nyelvek LFT_WP318G2 kódú tárgyra.
+Aknakereső játék újratextúrázva, Godot játékmotor használatával.
